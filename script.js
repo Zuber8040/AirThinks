@@ -74,23 +74,7 @@ setInterval(function(){
     heading.innerHTML=slogans[rand]
 
 
-
-
 }, 1000);
 
 
-function generateRandom() {
-   
-}
 
-console.log(generateRandom());
-
-// function fetchData(){
-    
-//     let heading=document.getElementById('heading');
-//     let ans
-//     heading.innerHTML=slogans[ans];
-// }
-// console.log(setTimeout(fetchData, 2000));
-
-// clearInterval(interval); // The interval will no longer run
