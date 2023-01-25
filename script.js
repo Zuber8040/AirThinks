@@ -74,7 +74,7 @@ setInterval(function(){
     heading.innerHTML=slogans[rand]
 
 
-}, 1000);
+}, 10000);
 
 
 

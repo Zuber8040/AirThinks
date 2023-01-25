@@ -8,9 +8,7 @@
   <!-- tailwind css -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css" />
-  <script>
-  
-  </script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body class="bg-gray-900">
 
@@ -80,7 +78,7 @@
             </div>
           </div>
           <div class="p-2 w-full">
-            <button class="btn  flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Submit</button>
+            <button onclick="sendEmail();reset(); return flase" class="  flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Submit</button>
           </div>
           <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
             <a class="text-indigo-500">anuragbksingh@email.com</a>
@@ -94,7 +92,21 @@
   </section>
   
 
-
+<script>
+  function sendEmail(){
+    Email.send({
+    Host : "smtp.gmail.com",
+    Username : "",
+    Password : "",
+    To : 'zuberustad456@gmail.com',
+    From : document.getElementById("name").value,
+    Subject : "New Contact form ",
+    Body : "And this is the body"
+}).then(
+  message => alert(message)
+);
+  }
+</script>
 
 
 
