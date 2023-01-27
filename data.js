@@ -4,121 +4,105 @@
 
 // https://api.thingspeak.com/channels/276330/charts/7?title=Soil%20Moisture&color=FF69B4&width=850&xaxis=Time
 
+// https://api.thingspeak.com/channels/1944585/field/1.json
 
 
-function updateChart(){
-  async function fetchData(){
-    const url = 'https://api.thingspeak.com/channels/1944585/field/1.json';
-    const response =await fetch(url);
-    // wait until the request has completed
-    const datapoints  = await response.json();
-    // console.log
-    // console.log(datapoints);  
-    return datapoints;
-  };
 
-    fetchData().then(datapoints=>{
-      let field12 = (datapoints.feeds.map(function(index){
-        return index.field1
-      }))
-      // console.log(field12)
+// function updateChart(){
+//   async function fetchData(){
+//     const url = 'https://api.thingspeak.com/channels/1944585/field/1.json';
+//     const response =await fetch(url);
+//     // wait until the request has completed
+//     const datapoints  = await response.json();
+//     // console.log(datapoints);  
+//     // return datapoints;
+//   };
+
+//     fetchData().then(datapoints=>{
+//       let field12 = (datapoints.feeds.map(function(index){
+//         return index.field1
+//       }))
+//       console.log(field12)
   
-      let created_at = (datapoints.feeds.map(function(index){
-        return index.created_at
-      }))
-      // console.log(created_at)
+//       let created_at = (datapoints.feeds.map(function(index){
+//         return index.created_at
+//       }))
+//       // console.log(created_at)
 
-      lineChart.config.data.labels=created_at;
-      lineChart.config.data.datasets[0].data=field12;
-      lineChart.update();
-
-
-  })
-}
-updateChart();
+//       lineChart.config.data.labels=created_at;
+//       lineChart.config.data.datasets[0].data=field12;
+//       lineChart.update();
 
 
-
-// setup
-// const data ={
-//   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//   datasets: [{
-//     // date and time
-//     label: '# of Votes',
-//     // data 
-//     data: [12, 19, 3, 5, 2, 3],
-//     borderWidth: 1
-//   }]
-// };
-
-
-// config
-
-// const config = {
-//   type: 'line',
-//     data,
-//     options: {
-//       scales: {
-//         y: {
-//           beginAtZero: true
-//         }
-//       },
-//       responsive:true
-//     }
+//   })
 // }
+// updateChart();
 
 
-// render init block 
+
+
+
+
+
+
+
+
 
 // const lineChart = new Chart(document.getElementById('lineChart'),config);
 
-// // 2nd lineChart
-// const lineChart2 = new Chart(document.getElementById('lineChart2'),config);
 
-// // // 3rd
-// const lineChart3 = new Chart(document.getElementById('lineChart3'),config);
 
-// // // 4th
-// const lineChart4 = new Chart(document.getElementById('lineChart4'),config);
+
+
+
+
  
-// // // 5th 
-// const lineChart5 = new Chart(document.getElementById('lineChart5'),config);
-
-// // // 6th
-// const lineChart6 = new Chart(document.getElementById('lineChart6'),config);
-
-
-let chart = c3.generate({
-  data: {
-      x: 'x',
-//        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
-      columns: [
-          ['x', '2013-01-01', '2013-01-02', '2013-01-03', '2013-01-04', '2013-01-05', '2013-01-06'],
-//            ['x', '20130101', '20130102', '20130103', '20130104', '20130105', '20130106'],
-          ['data1', 30, 200, 100, 400, 150, 250],
-          ['data2', 130, 340, 200, 500, 250, 350]
-      ]
-  },
-  axis: {
-      x: {
-          type: 'timeseries',
-          tick: {
-              format: '%Y-%m-%d'
-          }
-      }
-  }
-});
-
-setTimeout(function () {
-  chart.load({
-      columns: [
-          ['data3', 400, 500, 450, 700, 600, 500]
-      ]
-  });
-}, 1000);
-
-
-
-
-
-
+window.onload = function(){
+    var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        title: {
+            text: "MQ Data "
+        },
+        axisX: {
+            title: "Time"
+        },
+        axisY: {
+            title: "Percentage",
+            suffix: "%",
+            includeZero: true
+        },
+        data: [{
+            type: "line",
+            name: "CPU Utilization",
+            connectNullData: true,
+            //nullDataLineDashType: "solid",
+            xValueType: "dateTime",
+            xValueFormatString: "DD MMM hh:mm TT",
+            yValueFormatString: "#,##0.##\"%\"",
+            dataPoints: [
+                { x: 1501048673000, y: 35.939 },
+                { x: 1501052273000, y: 40.896 },
+                { x: 1501055873000, y: 56.625 },
+                { x: 1501059473000, y: 26.003 },
+                { x: 1501063073000, y: 20.376 },
+                { x: 1501066673000, y: 19.774 },
+                { x: 1501070273000, y: 23.508 },
+                { x: 1501073873000, y: 18.577 },
+                { x: 1501077473000, y: 15.918 },
+                { x: 1501081073000, y: null }, // Null Data
+                { x: 1501084673000, y: 10.314 },
+                { x: 1501088273000, y: 10.574 },
+                { x: 1501091873000, y: 14.422 },
+                { x: 1501095473000, y: 18.576 },
+                { x: 1501099073000, y: 22.342 },
+                { x: 1501102673000, y: 22.836 },
+                { x: 1501106273000, y: 23.220 },
+                { x: 1501109873000, y: 23.594 },
+                { x: 1501113473000, y: 24.596 },
+                { x: 1501117073000, y: 31.947 },
+                { x: 1501120673000, y: 31.142 }
+            ]
+        }]
+    });
+    chart.render();
+  } 
