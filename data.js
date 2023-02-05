@@ -1,108 +1,81 @@
 
-// https://api.thingspeak.com/channels/
-
-
-// https://api.thingspeak.com/channels/276330/charts/7?title=Soil%20Moisture&color=FF69B4&width=850&xaxis=Time
-
 // https://api.thingspeak.com/channels/1944585/field/1.json
 
 
 
-// function updateChart(){
-//   async function fetchData(){
-//     const url = 'https://api.thingspeak.com/channels/1944585/field/1.json';
-//     const response =await fetch(url);
-//     // wait until the request has completed
-//     const datapoints  = await response.json();
-//     // console.log(datapoints);  
-//     // return datapoints;
-//   };
 
-//     fetchData().then(datapoints=>{
-//       let field12 = (datapoints.feeds.map(function(index){
-//         return index.field1
-//       }))
-//       console.log(field12)
-  
-//       let created_at = (datapoints.feeds.map(function(index){
-//         return index.created_at
-//       }))
-//       // console.log(created_at)
+function updateChart() {
+	async function fetchData() {
+		const url = 'https://api.thingspeak.com/channels/1944585/field/1.json';
+		const response = await fetch(url);
+		// wait until the request has completed
+		const datapointss = await response.json();
+		// console.log(datapoints);  
+		return datapointss;
+	};
+	fetchData().then(datapointss => {
+		let field12 = (datapointss.feeds.map(function (index) {
+			return index.field1
+			//  console.log(index.field1)
+		}))
+		let created_at = (datapointss.feeds.map(function (index) {
 
-//       lineChart.config.data.labels=created_at;
-//       lineChart.config.data.datasets[0].data=field12;
-//       lineChart.update();
+			return index.created_at;
+
+			// console.log(index.created_at);
+			let year = index.created_at.slice(0,4);
+			// console.log(year);
+
+			let month  = index.created_at.slice(6,7);
+			// console.log(month);
+
+			let day = index.created_at.slice(8,10);
+			// console.log(day);
+
+			let hours = index.created_at.slice(11,13)
+			// console.log(hours);
+
+			let minutes = index.created_at.slice(14,16);
+			// console.log(minutes);
 
 
-//   })
-// }
+			let datee = new Date(year,month,day,hours,minutes);
+			// console.log(datee);
+			// return index.created_at
+			// let new_dat = Date.parse(index.created_at);
+			// 	console.log(new_dat);
+			// // let changed = new Date(new_dat);
+			// console.log(changed);
+		}))
+		// let a = new Date(1501048673000);
+		// console.log(a);
+		//console.log(created_at) 
+		// lineChart.config.data.labels=created_at;
+		// lineChart.config.data.datasets[0].data=field12;
+		// lineChart.update();
+		console.log(options.series.name)
+});
+}
 // updateChart();
 
 
+var options = {
+	chart: {
+	  type: 'line'
+	},
+	series: [{
+	  name: 'sales',
+	  data: [30,40,35,50,49,60,70,91,125]
+	}],
+	xaxis: {
+	  categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+	}
+  }
+  
+  var chart = new ApexCharts(document.querySelector("#chart"), options);
+  
+  chart.render();
 
 
 
 
-
-
-
-
-
-// const lineChart = new Chart(document.getElementById('lineChart'),config);
-
-
-
-
-
-
-
- 
-window.onload = function(){
-    var chart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
-        title: {
-            text: "MQ Data "
-        },
-        axisX: {
-            title: "Time"
-        },
-        axisY: {
-            title: "Percentage",
-            suffix: "%",
-            includeZero: true
-        },
-        data: [{
-            type: "line",
-            name: "CPU Utilization",
-            connectNullData: true,
-            //nullDataLineDashType: "solid",
-            xValueType: "dateTime",
-            xValueFormatString: "DD MMM hh:mm TT",
-            yValueFormatString: "#,##0.##\"%\"",
-            dataPoints: [
-                { x: 1501048673000, y: 35.939 },
-                { x: 1501052273000, y: 40.896 },
-                { x: 1501055873000, y: 56.625 },
-                { x: 1501059473000, y: 26.003 },
-                { x: 1501063073000, y: 20.376 },
-                { x: 1501066673000, y: 19.774 },
-                { x: 1501070273000, y: 23.508 },
-                { x: 1501073873000, y: 18.577 },
-                { x: 1501077473000, y: 15.918 },
-                { x: 1501081073000, y: null }, // Null Data
-                { x: 1501084673000, y: 10.314 },
-                { x: 1501088273000, y: 10.574 },
-                { x: 1501091873000, y: 14.422 },
-                { x: 1501095473000, y: 18.576 },
-                { x: 1501099073000, y: 22.342 },
-                { x: 1501102673000, y: 22.836 },
-                { x: 1501106273000, y: 23.220 },
-                { x: 1501109873000, y: 23.594 },
-                { x: 1501113473000, y: 24.596 },
-                { x: 1501117073000, y: 31.947 },
-                { x: 1501120673000, y: 31.142 }
-            ]
-        }]
-    });
-    chart.render();
-  } 
