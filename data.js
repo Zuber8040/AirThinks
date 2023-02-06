@@ -1,8 +1,10 @@
 
+
 // https://api.thingspeak.com/channels/1944585/field/1.json
 
 
 
+const dataArray = [];
 
 function updateChart() {
 	async function fetchData() {
@@ -14,15 +16,15 @@ function updateChart() {
 		return datapointss;
 	};
 	fetchData().then(datapointss => {
+		
 		let field12 = (datapointss.feeds.map(function (index) {
 			return index.field1
-			//  console.log(index.field1)
+			 console.log(index.field1)
 		}))
+
 		let created_at = (datapointss.feeds.map(function (index) {
-
-			return index.created_at;
-
-			// console.log(index.created_at);
+			// return index.created_at;
+			console.log(index.created_at);
 			let year = index.created_at.slice(0,4);
 			// console.log(year);
 
@@ -53,29 +55,94 @@ function updateChart() {
 		// lineChart.config.data.labels=created_at;
 		// lineChart.config.data.datasets[0].data=field12;
 		// lineChart.update();
-		console.log(options.series.name)
+		//console.log(options.series.name)
+
+
 });
 }
 // updateChart();
 
 
+
+
+fetch("https://api.thingspeak.com/channels/1944585/field/1.json").then((thingspeakData)=>{
+//   console.log(thingspeakData);
+  return thingspeakData.json();
+}).then((actualData)=>{
+// console.log(actualData)
+	for(let i=0;i<actualData.feeds.length;i++){
+		dataArray.push({x: actualData.feeds[i].created_at,y:actualData.feeds[i].field1});
+		// dataPoints.push({x: value[0], y: });
+	}
+	console.log(dataArray);
+	
+}).catch((error)=>{
+	console.log(error)
+});
+
+
+
 var options = {
-	chart: {
-	  type: 'line'
-	},
 	series: [{
-	  name: 'sales',
-	  data: [30,40,35,50,49,60,70,91,125]
-	}],
-	xaxis: {
-	  categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+	name: 'MQ Data',
+	data: dataArray
+  }],
+	chart: {
+	type: 'area',
+	stacked: false,
+	height: 350,
+	zoom: {
+	  type: 'x',
+	  enabled: true,
+	  autoScaleYaxis: true
+	},
+	toolbar: {
+	  autoSelected: 'zoom'
+	}
+  },
+  dataLabels: {
+	enabled: false
+  },
+  markers: {
+	size: 0,
+  },
+  title: {
+	text: 'MQ2 data ',
+	align: 'left'
+  },
+  fill: {
+	type: 'gradient',
+	gradient: {
+	  shadeIntensity: 1,
+	  inverseColors: false,
+	  opacityFrom: 0.5,
+	  opacityTo: 0,
+	  stops: [0, 90, 100]
+	},
+  },
+  yaxis: {
+	labels: {
+	  formatter: function (val) {
+		return (val / 1000000).toFixed(0);
+	  },
+	},
+	title: {
+	  text: 'Readings'
+	},
+  },
+  xaxis: {
+	type: 'datetime',
+  },
+  tooltip: {
+	shared: false,
+	y: {
+	  formatter: function (val) {
+		return (val / 1000000).toFixed(0)
+	  }
 	}
   }
-  
+  };
+
   var chart = new ApexCharts(document.querySelector("#chart"), options);
-  
   chart.render();
-
-
-
 
