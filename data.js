@@ -65,84 +65,77 @@ function updateChart() {
 
 
 
-fetch("https://api.thingspeak.com/channels/1944585/field/1.json").then((thingspeakData)=>{
-//   console.log(thingspeakData);
-  return thingspeakData.json();
-}).then((actualData)=>{
-// console.log(actualData)
-	for(let i=0;i<actualData.feeds.length;i++){
-		dataArray.push({x: actualData.feeds[i].created_at,y:actualData.feeds[i].field1});
-		// dataPoints.push({x: value[0], y: });
-	}
-	console.log(dataArray);
+
+
+
+//   fetch("https://api.thingspeak.com/channels/1944585/field/1.json").then((thingspeakData)=>{
+// 	//   console.log(thingspeakData);
+// 	  return thingspeakData.json();
+// 	}).then((actualData)=>{
+// 	// console.log(actualData)
+// 		for(let i=0;i<actualData.feeds.length;i++){
+// 			dataArray.push({x: actualData.feeds[i].created_at,y:actualData.feeds[i].field1});
+// 			// dataPoints.push({x: value[0], y: });
+// 		}
+// 		console.log(dataArray);
+		
+// 	}).catch((error)=>{
+// 		console.log(error)
+// 	});
+
+
+
+$.getJSON( "https://api.thingspeak.com/channels/1944585/field/1.json", function( data ) {
+	// var items = [];
+	$.each( data, function( key, val ) {
+	//   items.push( "<li id='" + key + "'>" + val + "</li>" );
+			for(let i=0;i<val.length;i++){
+				dataArray.push({x: val[i].created_at,y:val[i].field1});
+			// console.log(val[i].created_at,val[i].field1);
+		}
+	});
+   
 	
-}).catch((error)=>{
-	console.log(error)
-});
+  });
+	
+console.log(dataArray)
 
 
-
+window.onload = () => {
 var options = {
 	series: [{
-	name: 'MQ Data',
-	data: dataArray
+	  name: "Desktops",
+	  data: dataArray,
   }],
 	chart: {
-	type: 'area',
-	stacked: false,
 	height: 350,
+	type: 'line',
 	zoom: {
-	  type: 'x',
-	  enabled: true,
-	  autoScaleYaxis: true
-	},
-	toolbar: {
-	  autoSelected: 'zoom'
+	  enabled: false
 	}
   },
   dataLabels: {
 	enabled: false
   },
-  markers: {
-	size: 0,
+  stroke: {
+	curve: 'straight'
   },
   title: {
-	text: 'MQ2 data ',
+	text: 'Product Trends by Month',
 	align: 'left'
   },
-  fill: {
-	type: 'gradient',
-	gradient: {
-	  shadeIntensity: 1,
-	  inverseColors: false,
-	  opacityFrom: 0.5,
-	  opacityTo: 0,
-	  stops: [0, 90, 100]
-	},
-  },
-  yaxis: {
-	labels: {
-	  formatter: function (val) {
-		return (val / 1000000).toFixed(0);
-	  },
-	},
-	title: {
-	  text: 'Readings'
+  grid: {
+	row: {
+	  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+	  opacity: 0.5
 	},
   },
   xaxis: {
-	type: 'datetime',
-  },
-  tooltip: {
-	shared: false,
-	y: {
-	  formatter: function (val) {
-		return (val / 1000000).toFixed(0)
-	  }
-	}
+	categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
   }
   };
 
   var chart = new ApexCharts(document.querySelector("#chart"), options);
   chart.render();
 
+}
