@@ -86,56 +86,162 @@ function updateChart() {
 
 
 $.getJSON( "https://api.thingspeak.com/channels/1944585/field/1.json", function( data ) {
-	// var items = [];
 	$.each( data, function( key, val ) {
-	//   items.push( "<li id='" + key + "'>" + val + "</li>" );
-			for(let i=0;i<val.length;i++){
-				dataArray.push({x: val[i].created_at,y:val[i].field1});
-			// console.log(val[i].created_at,val[i].field1);
-		}
+	for(let i=0;i<val.length;i++){
+				let date_string = Date.parse(val[i].created_at);
+				dataArray.push({x: date_string,y:val[i].field1});
+			}
 	});
-   
-	
+	console.log(dataArray)
+	chart.updateSeries([{
+		name: 'Sales',
+		data: dataArray
+	  }])
   });
 	
-console.log(dataArray)
 
 
-window.onload = () => {
+// window.onload = () => {
+// var options = {
+// 	series: [{
+// 	  name: "Desktops",
+// 	  data: dataArray,
+//   }],
+// 	chart: {
+// 	height: 350,
+// 	type: 'line',
+// 	zoom: {
+// 	  enabled: false
+// 	}
+//   },
+//   dataLabels: {
+// 	enabled: false
+//   },
+//   stroke: {
+// 	curve: 'straight'
+//   },
+//   title: {
+// 	text: 'Product Trends by Month',
+// 	align: 'left'
+//   },
+//   grid: {
+// 	row: {
+// 	  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+// 	  opacity: 0.5
+// 	},
+//   },
+//   xaxis: {
+// 	categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+//   }
+//   };
+
+//   var chart = new ApexCharts(document.querySelector("#chart"), options);
+//   chart.render();
+
+// }
+
+
+
+
+
+
+
+
+// var options = {
+// 	chart: {
+// 	  height: 380,
+// 	  width: "100%",
+// 	  type: "area",
+// 	  animations: {
+// 		initialAnimation: {
+// 		  enabled: false
+// 		}
+// 	  }
+// 	},
+// 	series: [
+// 	  {
+// 		name: "Series 1",
+// 		data: [
+// 		  {
+// 			x: "02-10-2017 GMT",
+// 			y: 34
+// 		  },
+// 		  {
+// 			x: "02-11-2017 GMT",
+// 			y: 43
+// 		  },
+// 		  {
+// 			x: "02-12-2017 GMT",
+// 			y: 31
+// 		  },
+// 		  {
+// 			x: "02-13-2017 GMT",
+// 			y: 43
+// 		  },
+// 		  {
+// 			x: "02-14-2017 GMT",
+// 			y: 33
+// 		  },
+// 		  {
+// 			x: "02-15-2017 GMT",
+// 			y: 52
+// 		  }
+// 		]
+// 	  }
+// 	],
+// 	
+//   };
+  
+//   var chart = new ApexCharts(document.querySelector("#chart"), options);
+  
+//   chart.render();
+  
+
+
+
+
+// chart.updateSeries([{
+// 	data: [{
+// 		x: "02-02-2002",
+// 		y: 44
+// 	  }, {
+// 		x: "12-02-2002",
+// 		y: 51
+// 	  }]
+//   }])
+
+
+
 var options = {
-	series: [{
-	  name: "Desktops",
-	  data: dataArray,
-  }],
 	chart: {
-	height: 350,
-	type: 'line',
-	zoom: {
-	  enabled: false
-	}
-  },
-  dataLabels: {
-	enabled: false
-  },
-  stroke: {
-	curve: 'straight'
-  },
-  title: {
-	text: 'Product Trends by Month',
-	align: 'left'
-  },
-  grid: {
-	row: {
-	  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-	  opacity: 0.5
+		height: 350,
+		type: 'line',
 	},
-  },
-  xaxis: {
-	categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-  }
-  };
+	dataLabels: {
+		enabled: false
+	},
+	series: [],
+	title: {
+		text: 'Ajax Example',
+	},
+	noData: {
+	  text: 'Loading...'
+	},
+	xaxis: {
+		type: 'datetime',
+	}
 
-  var chart = new ApexCharts(document.querySelector("#chart"), options);
+  }
+  
+  var chart = new ApexCharts(
+	document.querySelector("#chart"),
+	options
+  );
+  
   chart.render();
 
-}
+
+
+
+  
+
