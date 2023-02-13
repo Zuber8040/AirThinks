@@ -94,7 +94,7 @@ $.getJSON( "https://api.thingspeak.com/channels/1944585/field/1.json", function(
 	});
 	console.log(dataArray)
 	chart.updateSeries([{
-		name: 'Sales',
+		name: 'MQ 2 Data',
 		data: dataArray
 	  }])
   });
@@ -214,15 +214,18 @@ $.getJSON( "https://api.thingspeak.com/channels/1944585/field/1.json", function(
 
 var options = {
 	chart: {
-		height: 350,
-		type: 'line',
+			type: 'area',
+			height: 350,
+			zoom: {
+			  autoScaleYaxis: true
+			}
 	},
 	dataLabels: {
 		enabled: false
 	},
 	series: [],
 	title: {
-		text: 'Ajax Example',
+		text: 'MQ 2 Data',
 	},
 	noData: {
 	  text: 'Loading...'
@@ -230,7 +233,7 @@ var options = {
 	xaxis: {
 		type: 'datetime',
 	}
-
+	
   }
   
   var chart = new ApexCharts(
