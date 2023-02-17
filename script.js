@@ -53,9 +53,6 @@ const slogans = [ "If u pollute the air, then the air will pollute u!",
 
 
 setInterval(function(){ 
-    // number = Math.floor((Math.random()*100)+1);
-    // //other code
-    // console.log(number)
 
     let min =1,max=50;
     // find diff
@@ -74,7 +71,7 @@ setInterval(function(){
     heading.innerHTML=slogans[rand]
 
 
-}, 10000);
+}, 3000);
 
 
 
