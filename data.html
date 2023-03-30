@@ -13,7 +13,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css" />
   <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
-  </script>
+  <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+  <script src="assets/plugins/global/plugins.bundle.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
+
+
+
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -61,6 +66,8 @@
 <div class="container mt-40 ">
   <h1 class="mb-2 text-white text-center">All the values are for testing purpose </h1>
   <h1 class="text-center text-4xl text-white		">Kharghar Air Quality Index (AQI)</h1>
+  
+
   <p class="text-center text-base	">Real-time air pollution level Mumbai, Maharashtra  </p>
   <h2 class="text-center mt-10 text-xl text-slate-700		">Update:18th March 2023 ,06:20PM</h2>
 </div>
@@ -124,7 +131,7 @@
   
 <div class="selectoption mt-2 ml-[20%] justify-center	 w-1/4 md:w-1/5 ">
 
-  <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+  <select id="option_data" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
     <option value="Methane">Methane</option>
     <option value="CO">CO</option>
     <option value="Ammonia">Ammonia</option>
@@ -145,29 +152,18 @@
   
 </div>
 
+<div id="chart" class="md:w-3/4 md:h-1/4  md:ml-[15%] md:mt-5">
+  
+</div>
+<h1 class="text-white	text-2xl text-center">Location of Device </h1>
+<iframe  class="md:mt-[25px] md:ml-[30%] md:w-[600px] h-[450px]" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3771.8470422246196!2d73.0550782!3d19.026460599999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTnCsDAxJzM1LjMiTiA3M8KwMDMnMTguMyJF!5e0!3m2!1sen!2sin!4v1680161948611!5m2!1sen!2sin"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+<!-- <div id="chart2" >
+</div>
 
 
 
-
-
-  <!-- 
-  <div class="main-form">
-      <select  id="option2"  class="mt-6 px-2 text-black   ">
-        <option value="Methane " >Methane (CH4)</option>
-        <option value="Ammonia ">Ammonia (Nh3)</option>
-        <option value="Hydrogen ">Hydrogen Sulphide Gas(H2S)</option>
-        <option value="Temperature ">Temperature</option>
-        <option value="Humidity ">Humidity</option>
-      </select> 
-     
-  </div> -->
-
-  <!-- <div id="chart" >
-  </div> -->
-
-  <!-- <div id="chart2" >
-  </div>
-
+  
   <div id="chart3" >
   </div>
   <div id="chart4" >
