@@ -1,4 +1,6 @@
 
+
+
 function updatedata1(){
 	async function fetchData(){
 	  const url = 'https://api.thingspeak.com/channels/1944585/field/1.json';
@@ -21,8 +23,25 @@ function updatedata1(){
 			const isotime = index.created_at;
 			const localtime = new Date(isotime).toLocaleString();
 			
+			const dateStr = localtime;
+			const date = new Date(dateStr);
+			const options = { 
+			weekday: undefined, 
+			year: 'numeric', 
+			month: 'long', 
+			day: 'numeric',
+			hour: 'numeric',
+			minute: 'numeric',
+			second: 'numeric', 
+			hour12: true, 
+			timeZoneName: undefined
+			};
+			const formattedDate = date.toLocaleString('en-US', options);
+			console.log(formattedDate); // "April 18, 2023, 9:57:13 PM"
+
+
 			const sensormq2time = document.querySelector(".sensormq2time");
-			sensormq2time.innerHTML = localtime;
+			sensormq2time.innerHTML = formattedDate;
 		}))
 	
 		
@@ -53,19 +72,30 @@ function updatedata2(){
 		let created_at = (datapoints.feeds.map(function(index){
 			const isotime = index.created_at;
 			const localtime = new Date(isotime).toLocaleString();
-			// console.log(localtime)
-			const sensormq9time = document.querySelector(".sensormq9time");
-			sensormq9time.innerHTML = localtime;
 			
-			const updatetime = document.querySelector(".update");
-			updatetime.innerHTML = localtime;
+			const dateStr = localtime;
+			const date = new Date(dateStr);
+			const options = { 
+			weekday: undefined, 
+			year: 'numeric', 
+			month: 'long', 
+			day: 'numeric',
+			hour: 'numeric',
+			minute: 'numeric',
+			second: 'numeric', 
+			hour12: true, 
+			timeZoneName: undefined
+			};
+			const formattedDate = date.toLocaleString('en-US', options);
+			
+			const sensormq9time = document.querySelector(".sensormq9time");
+			sensormq9time.innerHTML = formattedDate;
+			
+		
 		//   return index.created_at
 		}))
-		
-  
-		
-  
-  
+				  
+
 	})
   }
 updatedata2();
@@ -90,9 +120,24 @@ function updatedata3(){
 		let created_at = (datapoints.feeds.map(function(index){
 			const isotime = index.created_at;
 			const localtime = new Date(isotime).toLocaleString();
-			// console.log(localtime)
+			
+			const dateStr = localtime;
+			const date = new Date(dateStr);
+			const options = { 
+			weekday: undefined, 
+			year: 'numeric', 
+			month: 'long', 
+			day: 'numeric',
+			hour: 'numeric',
+			minute: 'numeric',
+			second: 'numeric', 
+			hour12: true, 
+			timeZoneName: undefined
+			};
+			const formattedDate = date.toLocaleString('en-US', options);
+			
 			const sensormq135time = document.querySelector(".sensormq135time");
-			sensormq135time.innerHTML = localtime;
+			sensormq135time.innerHTML = formattedDate;
 		//   return index.created_at
 		}))
 		
@@ -125,12 +170,30 @@ function updatedata4(){
 		let created_at = (datapoints.feeds.map(function(index){
 			const isotime = index.created_at;
 			const localtime = new Date(isotime).toLocaleString();
-			// console.log(localtime)
+			
+			const dateStr = localtime;
+			const date = new Date(dateStr);
+			const options = { 
+			weekday: undefined, 
+			year: 'numeric', 
+			month: 'long', 
+			day: 'numeric',
+			hour: 'numeric',
+			minute: 'numeric',
+			second: 'numeric', 
+			hour12: true, 
+			timeZoneName: undefined
+			};
+			const formattedDate = date.toLocaleString('en-US', options);
+
 			const sensormq136time = document.querySelector(".sensormq136time");
-			sensormq136time.innerHTML = localtime;
-		//   return index.created_at
+			sensormq136time.innerHTML =formattedDate;
+			
+			const update = document.querySelector(".update");
+			update.innerHTML=formattedDate;
 		}))
-  
+		
+
 	})
   }
 updatedata4();
@@ -155,9 +218,24 @@ function updatedata5(){
 		let created_at = (datapoints.feeds.map(function(index){
 			const isotime = index.created_at;
 			const localtime = new Date(isotime).toLocaleString();
-			// console.log(localtime)
+			
+			const dateStr = localtime;
+			const date = new Date(dateStr);
+			const options = { 
+			weekday: undefined, 
+			year: 'numeric', 
+			month: 'long', 
+			day: 'numeric',
+			hour: 'numeric',
+			minute: 'numeric',
+			second: 'numeric', 
+			hour12: true, 
+			timeZoneName: undefined
+			};
+			const formattedDate = date.toLocaleString('en-US', options);
+
 			const TemperatureVAL = document.querySelector(".TemperatureVAL");
-			TemperatureVAL.innerHTML = localtime;
+			TemperatureVAL.innerHTML = formattedDate;
 		//   return index.created_at
 		}))
   
@@ -184,10 +262,24 @@ function updatedata6(){
 		let created_at = (datapoints.feeds.map(function(index){
 			const isotime = index.created_at;
 			const localtime = new Date(isotime).toLocaleString();
-			// console.log(localtime)
+			const dateStr = localtime;
+			const date = new Date(dateStr);
+			const options = { 
+			weekday: undefined, 
+			year: 'numeric', 
+			month: 'long', 
+			day: 'numeric',
+			hour: 'numeric',
+			minute: 'numeric',
+			second: 'numeric', 
+			hour12: true, 
+			timeZoneName: undefined
+			};
+			const formattedDate = date.toLocaleString('en-US', options);
+
 			const HumidityTime = document.querySelector(".HumidityTime");
-			HumidityTime.innerHTML = localtime;
-		//   return index.created_at
+			HumidityTime.innerHTML = formattedDate;
+		
 		}))
   
 	})
@@ -235,12 +327,10 @@ let v2num = Number(v2);
 let v3 = lastValues3[2];
 let v3num = Number(v3);
 
-let v4 = lastValues4[3];
-let v4num = Number(v4);
 
 
-let ans =(v1num)+(v2num-3)+(v3num-4)+(v4num-10)
-let ansfinal = ans/4;
+let ans =(v1num)+(v2num-3)+(v3num-4);
+let ansfinal = ans/3;
 
 let ans_final2 = Math.floor(ansfinal);
 console.log(ans_final2)
