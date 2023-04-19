@@ -387,6 +387,10 @@ if(v4num<=5){
 	h2.style.backgroundColor = "#34a12b";
 	h2.innerHTML = '<5% ~ Good'
 }
+else{
+	h2.style.backgroundColor = "#c11e2f";
+	h2.innerHTML = '>5% ~ Hazardous'
+}
 
 return lastValues1[0];
 };
