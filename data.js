@@ -11,7 +11,7 @@ function updatedata1(){
 	};
 	  fetchData().then(datapoints=>{
 		let field12 = (datapoints.feeds.map(function(index){
-		  	// console.log(index.field1)
+		  	
 			let mq2val = document.querySelector(".sensormq2value");
 			mq2val.innerHTML = index.field1;
 			const per  = document.createTextNode(" %");
@@ -37,7 +37,7 @@ function updatedata1(){
 			timeZoneName: undefined
 			};
 			const formattedDate = date.toLocaleString('en-US', options);
-			console.log(formattedDate); // "April 18, 2023, 9:57:13 PM"
+			// console.log(formattedDate); // "April 18, 2023, 9:57:13 PM"
 
 
 			const sensormq2time = document.querySelector(".sensormq2time");
@@ -62,7 +62,7 @@ function updatedata2(){
 	};
 	  fetchData().then(datapoints=>{
 		let field12 = (datapoints.feeds.map(function(index){
-		  	// console.log(index.field1)
+		  	
 			let sensormq9value = document.querySelector(".sensormq9value");
 			sensormq9value.textContent = index.field2-3;
 			const per  = document.createTextNode(" %");
@@ -111,7 +111,7 @@ function updatedata3(){
 	};
 	  fetchData().then(datapoints=>{
 		let field12 = (datapoints.feeds.map(function(index){
-		  	// console.log(index.field1)
+		  
 			let sensormq135value = document.querySelector(".sensormq135value");
 			sensormq135value.textContent = index.field3-4;
 			const per  = document.createTextNode(" %");
@@ -161,11 +161,15 @@ function updatedata4(){
 	};
 	  fetchData().then(datapoints=>{
 		let field12 = (datapoints.feeds.map(function(index){
-		  	// console.log(index.field1)
+		  	
 			let sensormq136value = document.querySelector(".sensormq136value");
 			sensormq136value.textContent = index.field4-10;
-			const per  = document.createTextNode(" %");
+			const per  = document.createTextNode("%");
 			sensormq136value.append(per);
+				
+	
+	
+
 		}))
 		let created_at = (datapoints.feeds.map(function(index){
 			const isotime = index.created_at;
@@ -189,14 +193,19 @@ function updatedata4(){
 			const sensormq136time = document.querySelector(".sensormq136time");
 			sensormq136time.innerHTML =formattedDate;
 			
-			const update = document.querySelector(".update");
-			update.innerHTML=formattedDate;
-		}))
-		
+			const update2 = document.querySelector(".update2");
+			update2.innerHTML=formattedDate;
 
+			
+			
+			
+
+		}))
+		// below 5 green above red  or good
 	})
   }
 updatedata4();
+
 
 
 function updatedata5(){
@@ -209,11 +218,13 @@ function updatedata5(){
 	};
 	  fetchData().then(datapoints=>{
 		let field12 = (datapoints.feeds.map(function(index){
-		  	// console.log(index.field1)
+		  	
 			let Temperature = document.querySelector(".Temperature");
 			Temperature.textContent = index.field5;
+			Temperature.style.color = '#1B98F5'
 			const per  = document.createTextNode("°C");
 			Temperature.append(per);
+
 		}))
 		let created_at = (datapoints.feeds.map(function(index){
 			const isotime = index.created_at;
@@ -233,9 +244,11 @@ function updatedata5(){
 			timeZoneName: undefined
 			};
 			const formattedDate = date.toLocaleString('en-US', options);
-
+			const update = document.querySelector(".update");
+			update.innerHTML=formattedDate;
 			const TemperatureVAL = document.querySelector(".TemperatureVAL");
 			TemperatureVAL.innerHTML = formattedDate;
+			TemperatureVAL.style.color = '#1B98F5'
 		//   return index.created_at
 		}))
   
@@ -253,10 +266,10 @@ function updatedata6(){
 	};
 	  fetchData().then(datapoints=>{
 		let field12 = (datapoints.feeds.map(function(index){
-		  	// console.log(index.field1)
+		  	
 			let Humidity = document.querySelector(".Humidity");
 			Humidity.textContent = index.field6;
-			
+			Humidity.style.color ='#FF6263';			
 			
 		}))
 		let created_at = (datapoints.feeds.map(function(index){
@@ -279,7 +292,7 @@ function updatedata6(){
 
 			const HumidityTime = document.querySelector(".HumidityTime");
 			HumidityTime.innerHTML = formattedDate;
-		
+			HumidityTime.style.color ='#FF6263';
 		}))
   
 	})
@@ -327,19 +340,23 @@ let v2num = Number(v2);
 let v3 = lastValues3[2];
 let v3num = Number(v3);
 
+let v4 = lastValues4[3];
+let v4num = Number(v4);
+
 
 
 let ans =(v1num)+(v2num-3)+(v3num-4);
 let ansfinal = ans/3;
 
 let ans_final2 = Math.floor(ansfinal);
-console.log(ans_final2)
+
 
 let avgval2 = document.querySelector(".avgval2");
 avgval2.innerHTML = ans_final2;
 
 
 const h1 = document.querySelector("#main-heading");
+const h2 = document.querySelector("#main-heading2");
 
 if(ans_final2<=10){
 	h1.style.backgroundColor = "#34a12b";
@@ -365,7 +382,13 @@ else if(ans_final2>81){
 	h1.style.backgroundColor = "#c11e2f";
 	h1.innerHTML = 'Hazardous';
 }
-  return lastValues1[0];
+
+if(v4num<=5){
+	h2.style.backgroundColor = "#34a12b";
+	h2.innerHTML = '<5% ~ Good'
+}
+
+return lastValues1[0];
 };
 
 
@@ -375,3 +398,4 @@ const main = async () => {
 
 }
 main();
+
