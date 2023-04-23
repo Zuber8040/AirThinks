@@ -166,6 +166,7 @@ function updatedata4(){
 			sensormq136value.textContent = index.field4-10;
 			const per  = document.createTextNode("%");
 			sensormq136value.append(per);
+
 				
 	
 	
@@ -190,8 +191,8 @@ function updatedata4(){
 			};
 			const formattedDate = date.toLocaleString('en-US', options);
 
-			const sensormq136time = document.querySelector(".sensormq136time");
-			sensormq136time.innerHTML =formattedDate;
+			// const sensormq136time = document.querySelector(".sensormq136time");
+			// sensormq136time.innerHTML =formattedDate;
 			
 			const update2 = document.querySelector(".update2");
 			update2.innerHTML=formattedDate;
@@ -343,7 +344,8 @@ let v3num = Number(v3);
 let v4 = lastValues4[3];
 let v4num = Number(v4);
 
-
+// mq9 3-> 5
+// mq136 ->
 
 let ans =(v1num)+(v2num-3)+(v3num-4);
 let ansfinal = ans/3;
