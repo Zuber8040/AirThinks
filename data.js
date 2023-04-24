@@ -113,9 +113,11 @@ function updatedata3(){
 		let field12 = (datapoints.feeds.map(function(index){
 		  
 			let sensormq135value = document.querySelector(".sensormq135value");
-			sensormq135value.textContent = index.field3-4;
+			sensormq135value.textContent = index.field3-3;
 			const per  = document.createTextNode(" %");
 			sensormq135value.append(per);
+			console.log(sensormq135value);
+
 		}))
 		let created_at = (datapoints.feeds.map(function(index){
 			const isotime = index.created_at;
