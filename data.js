@@ -191,7 +191,7 @@ function updatedata4(){
 		  	
 			let sensormq136value = document.querySelector(".sensormq136value");
 			
-			let aaa  =index.field4-9;
+			let aaa  =index.field4-10;
 			if(aaa<0){
 				sensormq136value.textContent = 0;
 			}
