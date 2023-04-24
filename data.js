@@ -18,6 +18,14 @@ function updatedata1(){
 			mq2val.append(per);
    
        
+			let aaa  =index.field1;
+			if(aaa<0){
+				mq2val.innerHTML = 0
+			}
+			else{
+				mq2val.innerHTML  =index.field1;
+			}
+			
 		}))
 		let created_at = (datapoints.feeds.map(function(index){
 			const isotime = index.created_at;
@@ -68,6 +76,15 @@ function updatedata2(){
 			const per  = document.createTextNode(" %");
 			sensormq9value.append(per);
    
+
+			let aaa  =index.field2-3;
+			if(aaa<0){
+				sensormq9value.textContent = 0;
+			}
+			else{
+				sensormq9value.textContent = index.field2-3;
+			}
+			
 		}))
 		let created_at = (datapoints.feeds.map(function(index){
 			const isotime = index.created_at;
@@ -113,10 +130,18 @@ function updatedata3(){
 		let field12 = (datapoints.feeds.map(function(index){
 		  
 			let sensormq135value = document.querySelector(".sensormq135value");
-			sensormq135value.textContent = index.field3-3;
+			
 			const per  = document.createTextNode(" %");
 			sensormq135value.append(per);
 			console.log(index.field3-3);
+
+			let aaa  =index.field3-4;
+			if(aaa<0){
+				sensormq135value.textContent =0;
+			}
+			else{
+				sensormq135value.textContent = index.field3-4;
+			}
 
 		}))
 		let created_at = (datapoints.feeds.map(function(index){
@@ -165,7 +190,16 @@ function updatedata4(){
 		let field12 = (datapoints.feeds.map(function(index){
 		  	
 			let sensormq136value = document.querySelector(".sensormq136value");
-			sensormq136value.textContent = index.field4-10;
+			
+			let aaa  =index.field4-9;
+			if(aaa<0){
+				sensormq136value.textContent = 0;
+			}
+			else{
+				sensormq136value.textContent = index.field4-10;
+			}
+
+
 			const per  = document.createTextNode("%");
 			sensormq136value.append(per);
 
@@ -387,13 +421,15 @@ else if(ans_final2>81){
 	h1.innerHTML = 'Hazardous';
 }
 
+
+
 if(v4num<=5){
 	h2.style.backgroundColor = "#34a12b";
 	h2.innerHTML = '<5% ~ Good'
 }
 else{
 	h2.style.backgroundColor = "#c11e2f";
-	h2.innerHTML = '>5% ~ Hazardous'
+	h2.innerHTML = '>5% ~ Hazardous';
 }
 
 return lastValues1[0];
