@@ -116,7 +116,7 @@ function updatedata3(){
 			sensormq135value.textContent = index.field3-3;
 			const per  = document.createTextNode(" %");
 			sensormq135value.append(per);
-			console.log(sensormq135value);
+			console.log(index.field3-3);
 
 		}))
 		let created_at = (datapoints.feeds.map(function(index){
